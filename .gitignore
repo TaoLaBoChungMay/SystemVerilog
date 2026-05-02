@@ -1,0 +1,10 @@
+# Verilog simulation files
+*.vcd
+*.svvp
+
+# (optional) waveform khác nếu có
+*.fst
+*.lxt
+
+# VS Code
+.vscode/
