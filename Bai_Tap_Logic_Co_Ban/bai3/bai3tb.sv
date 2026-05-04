@@ -13,20 +13,28 @@ module tb ();
         .y2   (y2),
         .y_out(y_out)
     );
-    initial begin
+
+    initial 
+    begin
         $dumpfile ("tb.vcd");
         $dumpvars(0, tb);
-        $display(" x1 | x2 | x3 | x4 | x5 | y1 | y2 | y_out ");
-        $display("----+----+----+----+----+----+----+------");
-        for (int i=0; i < 32; i++)  begin
+
+        $display("\n=== Truth Table ===");
+        $display("-------------------------------------------------");
+        $display("| x1 | x2 | x3 | x4 | x5 || y1 | y2 | y_out |");
+        $display("-------------------------------------------------");
+
+        for (int i=0; i < 32; i++) 
+        begin
             {x1, x2, x3, x4, x5} = i;
 
-            #1;     // chờ cập nhật
-            $display("%1b | %1b | %1b | %1b | %1b | %1b | %1b | %1b ", 
-                       x1,   x2,   x3,  x4,   x5,    y1,   y2,   y_out);
+            #1;
+            $display("|  %0b |  %0b |  %0b |  %0b |  %0b ||  %0b |  %0b |   %0b   |",
+                            x1,  x2,  x3,  x4,  x5,   y1,  y2,   y_out);
             #9;
         end
 
+        $display("-------------------------------------------------");
         $finish;
     end
 
